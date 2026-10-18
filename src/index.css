@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+  }
+
+  /* Default Dark Mode (Navy Blue) */
+  html.dark body {
+    background-color: #060D1A;
+    color: #F1F5F9;
+  }
+
+  /* Light Mode (Navy & Ice Executive) */
+  html.light body {
+    background-color: #F4F7FB;
+    color: #0F172A;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@keyframes clickRipple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.8);
+    opacity: 0;
+  }
+}
+
+/* Scroll reveal helper */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle sleek scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #060D1A;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #E2E8F0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1B2E4B;
+  border-radius: 4px;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #94A3B8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2563EB;
+}
