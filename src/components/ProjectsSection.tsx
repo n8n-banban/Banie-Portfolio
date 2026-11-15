@@ -144,7 +144,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onContactClick
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {filteredProjects.map((project) => {
-            const projectImage = customImages[project.id] || project.image;
+            const storedCustom = customImages[project.id];
+            const projectImage =
+              storedCustom && !storedCustom.startsWith('/src/assets/')
+                ? storedCustom
+                : project.image;
             return (
               <div
                 key={project.id}

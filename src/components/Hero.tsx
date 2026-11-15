@@ -14,11 +14,10 @@ export const Hero: React.FC = () => {
   useEffect(() => {
     try {
       const stored = localStorage.getItem('banie-custom-profile-photo');
-      if (stored && (stored.startsWith('data:image/') || stored.includes('banie_real_headshot'))) {
+      if (stored && stored.startsWith('data:image/')) {
         setProfilePhoto(stored);
         setIsCustomPhoto(true);
       } else if (stored) {
-        // Clear old AI placeholder if present from prior turns
         localStorage.removeItem('banie-custom-profile-photo');
         setProfilePhoto(PERSONAL_INFO.profileImage);
         setIsCustomPhoto(false);

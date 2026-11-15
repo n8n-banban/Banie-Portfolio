@@ -1,5 +1,13 @@
 import { Project, Service, WorkExperience, Testimonial } from '../types';
-import banieHeadshot from '../assets/images/banie_real_headshot_1792310349005.jpg';
+import banieHeadshot from '../assets/images/Professional Asian Corporate Headshot.png';
+import automationLeadPipelineImg from '../assets/images/automation_lead_pipeline_1792304139843.jpg';
+import voiceAiTelephonyImg from '../assets/images/voice_ai_telephony_1792304139185.jpg';
+import aiJobScraperResumeImg from '../assets/images/ai_job_scraper_resume_1792309333994.jpg';
+import aiSocialMessengerBotImg from '../assets/images/ai_social_messenger_bot_1792309314222.jpg';
+import aiDocumentTriageXeroImg from '../assets/images/ai_document_triage_xero_1792309313780.jpg';
+import aiGmailDriveArchivalImg from '../assets/images/ai_gmail_drive_archival_1792309335009.jpg';
+import aiContentTranscriptionImg from '../assets/images/ai_content_transcription_engine_1792309313510.jpg';
+import aiApolloLeadEnrichmentImg from '../assets/images/ai_apollo_lead_enrichment_1792309334487.jpg';
 
 export const PERSONAL_INFO = {
   name: 'Banie Bacolod Necesario',
@@ -61,7 +69,7 @@ export const PROJECTS: Project[] = [
     ],
     businessImpact: 'Reduced initial lead response time from 4+ hours to under 45 seconds, boosting booking conversion rates.',
     featured: true,
-    image: '/src/assets/images/automation_lead_pipeline_1792304139843.jpg',
+    image: automationLeadPipelineImg,
     workflowSteps: [
       { step: 1, title: 'Lead Capture', tool: 'GoHighLevel / Webhook', description: 'Receives raw form submissions and validates fields.' },
       { step: 2, title: 'AI Intent Parsing', tool: 'Google Gemini', description: 'Categorizes inquiry type, urgency tier, and qualification score.' },
@@ -86,7 +94,7 @@ export const PROJECTS: Project[] = [
     ],
     businessImpact: '24/7 call coverage without staffing overhead, handling concurrent calls and cutting booking drop-offs.',
     featured: true,
-    image: '/src/assets/images/voice_ai_telephony_1792304139185.jpg',
+    image: voiceAiTelephonyImg,
     workflowSteps: [
       { step: 1, title: 'Inbound Telephony', tool: 'Vapi Voice AI', description: 'Handles low-latency conversational speech with human tone.' },
       { step: 2, title: 'Intent Branching', tool: 'n8n Sub-flows', description: 'Routes to GetSlots, BookSlots, UpdateSlots, or CancelSlots.' },
@@ -111,7 +119,7 @@ export const PROJECTS: Project[] = [
     ],
     businessImpact: 'Automated 90% of manual resume customization time, delivering high-matching tailored drafts in seconds.',
     featured: false,
-    image: '/src/assets/images/ai_job_scraper_resume_1792309333994.jpg',
+    image: aiJobScraperResumeImg,
     workflowSteps: [
       { step: 1, title: 'Slack Trigger', tool: 'Slack Bot API', description: 'Listens for target channel messages containing job URLs.' },
       { step: 2, title: 'HTTP Scraper', tool: 'n8n HTTP Request', description: 'Scrapes live job listing text and structured metadata.' },
@@ -136,7 +144,7 @@ export const PROJECTS: Project[] = [
     ],
     businessImpact: 'Maintained zero response wait time on social channels while preventing hallucinations with source grounding.',
     featured: false,
-    image: '/src/assets/images/ai_social_messenger_bot_1792309314222.jpg',
+    image: aiSocialMessengerBotImg,
     workflowSteps: [
       { step: 1, title: 'Messenger Webhook', tool: 'Meta Graph API', description: 'Catches incoming customer chat messages.' },
       { step: 2, title: 'Doc Retrieval', tool: 'Google Docs API', description: 'Extracts updated operational knowledge and pricing guides.' },
@@ -160,7 +168,7 @@ export const PROJECTS: Project[] = [
     ],
     businessImpact: 'Eliminated manual report export steps for finance leads, saving ~6 hours weekly and preventing reporting delays.',
     featured: true,
-    image: '/src/assets/images/ai_document_triage_xero_1792309313780.jpg',
+    image: aiDocumentTriageXeroImg,
     workflowSteps: [
       { step: 1, title: 'Asana Watcher', tool: 'Asana Trigger', description: 'Detects state change on target accounting task.' },
       { step: 2, title: 'Xero API Query', tool: 'Xero Integration', description: 'Fetches granular general ledger transaction records.' },
@@ -185,7 +193,7 @@ export const PROJECTS: Project[] = [
     ],
     businessImpact: 'Ended manual file downloading and misplaced attachments, ensuring 100% audit-ready cloud organization.',
     featured: false,
-    image: '/src/assets/images/ai_gmail_drive_archival_1792309335009.jpg',
+    image: aiGmailDriveArchivalImg,
     workflowSteps: [
       { step: 1, title: 'Watch Emails', tool: 'Gmail Watcher', description: 'Monitors inbox for attachment-bearing emails.' },
       { step: 2, title: 'Attachment List', tool: 'Gmail Attachment Module', description: 'Separates multiple files from single messages.' },
@@ -210,7 +218,7 @@ export const PROJECTS: Project[] = [
     ],
     businessImpact: 'Cut content production turnaround time from 2 days to under 15 minutes per recording.',
     featured: false,
-    image: '/src/assets/images/ai_content_transcription_engine_1792309313510.jpg',
+    image: aiContentTranscriptionImg,
     workflowSteps: [
       { step: 1, title: 'Drive File Upload', tool: 'Google Drive Trigger', description: 'Detects new master media file in designated folder.' },
       { step: 2, title: 'AI Transcription', tool: 'AI by Zapier', description: 'Transcribes audio/video stream into formatted text.' },
@@ -236,7 +244,7 @@ export const PROJECTS: Project[] = [
     ],
     businessImpact: 'Zero onboarding friction between sales close and creative team kickoff across 5 distinct client states.',
     featured: false,
-    image: '/src/assets/images/automation_lead_pipeline_1792304139843.jpg',
+    image: automationLeadPipelineImg,
     workflowSteps: [
       { step: 1, title: 'Asana Updated Task', tool: 'Asana Trigger', description: 'Monitors status movements on master project tasks.' },
       { step: 2, title: 'Zapier Path Splitter', tool: 'Zapier Paths Module', description: 'Branches into 5 distinct operational state routes.' },
@@ -261,7 +269,7 @@ export const PROJECTS: Project[] = [
     ],
     businessImpact: 'Equipped sales representatives with comprehensive prospect intelligence and AI drafts before first contact.',
     featured: false,
-    image: '/src/assets/images/ai_apollo_lead_enrichment_1792309334487.jpg',
+    image: aiApolloLeadEnrichmentImg,
     workflowSteps: [
       { step: 1, title: 'Youform Intake', tool: 'Youform Trigger', description: 'Captures incoming form submission email and company name.' },
       { step: 2, title: 'URL Formatter', tool: 'Formatter by Zapier', description: 'Parses and cleans company website domain.' },
