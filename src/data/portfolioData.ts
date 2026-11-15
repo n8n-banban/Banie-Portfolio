@@ -1,13 +1,14 @@
 import { Project, Service, WorkExperience, Testimonial } from '../types';
 import banieHeadshot from '../assets/images/Professional Asian Corporate Headshot.png';
 import automationLeadPipelineImg from '../assets/images/automation_lead_pipeline_1792304139843.jpg';
-import voiceAiTelephonyImg from '../assets/images/voice_ai_telephony_1792304139185.jpg';
-import aiJobScraperResumeImg from '../assets/images/ai_job_scraper_resume_1792309333994.jpg';
-import aiSocialMessengerBotImg from '../assets/images/ai_social_messenger_bot_1792309314222.jpg';
-import aiDocumentTriageXeroImg from '../assets/images/ai_document_triage_xero_1792309313780.jpg';
-import aiGmailDriveArchivalImg from '../assets/images/ai_gmail_drive_archival_1792309335009.jpg';
-import aiContentTranscriptionImg from '../assets/images/ai_content_transcription_engine_1792309313510.jpg';
-import aiApolloLeadEnrichmentImg from '../assets/images/ai_apollo_lead_enrichment_1792309334487.jpg';
+import voiceAiTelephonyImg from '../assets/images/AI Appointment Setter Voice Agent (AI Receptionist).jpg';
+import aiJobScraperResumeImg from '../assets/images/AI Job Scraper & Resume Optimizer.jpg';
+import aiSocialMessengerBotImg from '../assets/images/Facebook Page AI Support Agent.jpg';
+import aiDocumentTriageXeroImg from '../assets/images/Automated Xero General Ledger Report Delivery.jpg';
+import aiGmailDriveArchivalImg from '../assets/images/Gmail Attachment Sorting & Cloud Archiving.jpg';
+import aiContentTranscriptionImg from '../assets/images/AI Content Repurposing Engine.jpg';
+import asanaMultiPathWorkflowImg from '../assets/images/Asana Multi-Path Production Workflow.jpg';
+import aiApolloLeadEnrichmentImg from '../assets/images/Automated Lead Enrichment Pipeline.jpg';
 
 export const PERSONAL_INFO = {
   name: 'Banie Bacolod Necesario',
@@ -244,7 +245,7 @@ export const PROJECTS: Project[] = [
     ],
     businessImpact: 'Zero onboarding friction between sales close and creative team kickoff across 5 distinct client states.',
     featured: false,
-    image: automationLeadPipelineImg,
+    image: asanaMultiPathWorkflowImg,
     workflowSteps: [
       { step: 1, title: 'Asana Updated Task', tool: 'Asana Trigger', description: 'Monitors status movements on master project tasks.' },
       { step: 2, title: 'Zapier Path Splitter', tool: 'Zapier Paths Module', description: 'Branches into 5 distinct operational state routes.' },
