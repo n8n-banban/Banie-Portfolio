@@ -9,6 +9,7 @@ import aiGmailDriveArchivalImg from '../assets/images/Gmail Attachment Sorting &
 import aiContentTranscriptionImg from '../assets/images/AI Content Repurposing Engine.jpg';
 import asanaMultiPathWorkflowImg from '../assets/images/Asana Multi-Path Production Workflow.jpg';
 import aiApolloLeadEnrichmentImg from '../assets/images/Automated Lead Enrichment Pipeline.jpg';
+import brightSmileGhlImg from '../assets/images/Bright Smile Appointment Confirmation and Reminders.jpg';
 
 export const PERSONAL_INFO = {
   name: 'Banie Bacolod Necesario',
@@ -277,6 +278,32 @@ export const PROJECTS: Project[] = [
       { step: 3, title: 'Apollo Webhook', tool: 'Webhooks by Zapier', description: 'Pulls rich firmographic company intelligence via Apollo API.' },
       { step: 4, title: 'Priority Branching', tool: 'Zapier Paths', description: 'Routes to High Priority or Low Priority execution flow.' },
       { step: 5, title: 'AI Outreach Prep', tool: 'AI by Zapier & Sheets', description: 'Saves high-priority leads and prepares tailored draft emails.' }
+    ]
+  },
+  {
+    id: 'bright-smile-appointment-reminders',
+    title: 'Dental Service Appointment Confirmation with Reminders',
+    category: 'GoHighLevel',
+    platforms: ['GoHighLevel', 'CRM Pipelines', 'Email Automation', 'Wait Timers', 'Tagging'],
+    summary:
+      'Built an automated GoHighLevel appointment lifecycle workflow for Bright Smile that triggers on booking status, applies patient tracking tags, creates or updates pipeline opportunities, sends instant confirmation emails, and schedules timed 24-hour and 4-hour reminders.',
+    trigger: 'Appointment Status updated (Event type is "Normal") in GoHighLevel',
+    actions: [
+      'Applies "bright smile booked" CRM tag immediately upon appointment creation',
+      'Creates or updates the patient opportunity record inside the GoHighLevel pipeline',
+      'Dispatches instant appointment confirmation email to the client',
+      'Uses staggered Wait Timers (1 day & 4 hours before) to send timely email reminders'
+    ],
+    businessImpact: 'Eliminated manual booking follow-ups and reduced appointment no-shows with automated multi-stage reminders.',
+    featured: true,
+    image: brightSmileGhlImg,
+    workflowSteps: [
+      { step: 1, title: 'Appointment Status Trigger', tool: 'GoHighLevel Trigger', description: 'Enrolls contacts when a Normal-type appointment is booked.' },
+      { step: 2, title: 'Add Tracking Tag', tool: 'GoHighLevel CRM', description: 'Applies the "bright smile booked" tag for segmentation.' },
+      { step: 3, title: 'Create or Update Opportunity', tool: 'GHL Pipeline', description: 'Logs or updates the appointment stage in the sales pipeline.' },
+      { step: 4, title: 'Send Confirmation Email', tool: 'GHL Email Action', description: 'Sends immediate appointment confirmation details to the contact.' },
+      { step: 5, title: 'Wait 1 Day & 24h Reminder', tool: 'GHL Wait & Email', description: 'Pauses until 24 hours prior and sends the reminder email.' },
+      { step: 6, title: 'Wait 4 Hours Pre-Visit', tool: 'GHL Wait Timer', description: 'Stages the final 4-hour pre-appointment reminder window.' }
     ]
   }
 ];

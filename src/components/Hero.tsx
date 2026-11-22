@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PERSONAL_INFO } from '../data/portfolioData';
+import { PERSONAL_INFO, PROJECTS } from '../data/portfolioData';
 import { ArrowRight, Phone, Mail, Check, Copy } from 'lucide-react';
 
 export const Hero: React.FC = () => {
@@ -183,7 +183,7 @@ export const Hero: React.FC = () => {
 
           <div className="p-4 rounded-xl bg-white dark:bg-[#0B172E] border border-slate-200 dark:border-blue-900/50 shadow-sm transition-all hover:border-blue-400/40">
             <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-mono tabular-nums mb-1">
-              9 <span className="text-blue-600 dark:text-blue-400 text-lg font-sans">Pipelines</span>
+              {PROJECTS.length} <span className="text-blue-600 dark:text-blue-400 text-lg font-sans">Pipelines</span>
             </div>
             <div className="text-xs text-slate-600 dark:text-slate-400 leading-snug">
               Production automations across n8n, Make, Zapier, and GHL

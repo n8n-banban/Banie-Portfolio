@@ -67,7 +67,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onContactClick
     reader.readAsDataURL(file);
   };
 
-  const categories = ['All', 'n8n', 'Make', 'Zapier', 'AI & Voice'];
+  const categories = ['All', 'n8n', 'Make', 'Zapier', 'GoHighLevel', 'AI & Voice'];
 
   const filteredProjects =
     selectedCategory === 'All'
@@ -76,6 +76,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onContactClick
           if (selectedCategory === 'n8n') return p.platforms.includes('n8n') || p.category === 'n8n';
           if (selectedCategory === 'Make') return p.platforms.includes('Make') || p.category === 'Make';
           if (selectedCategory === 'Zapier') return p.platforms.includes('Zapier') || p.category === 'Zapier';
+          if (selectedCategory === 'GoHighLevel') return p.platforms.includes('GoHighLevel') || p.category === 'GoHighLevel';
           if (selectedCategory === 'AI & Voice') return p.platforms.includes('Vapi') || p.category === 'AI & Voice';
           return true;
         });
