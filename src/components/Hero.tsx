@@ -1,31 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import { ArrowRight, Phone, Mail, Check, Copy, Camera, Upload, RotateCcw } from 'lucide-react';
+import { ArrowRight, Phone, Mail, Check, Copy } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [profilePhoto, setProfilePhoto] = useState<string>(PERSONAL_INFO.profileImage);
-  const [isCustomPhoto, setIsCustomPhoto] = useState<boolean>(false);
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [uploadSuccess, setUploadSuccess] = useState<boolean>(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('banie-custom-profile-photo');
-      if (stored && stored.startsWith('data:image/')) {
-        setProfilePhoto(stored);
-        setIsCustomPhoto(true);
-      } else if (stored) {
-        localStorage.removeItem('banie-custom-profile-photo');
-        setProfilePhoto(PERSONAL_INFO.profileImage);
-        setIsCustomPhoto(false);
-      }
-    } catch {
-      // Local storage fallback
-    }
-  }, []);
 
   const copyToClipboard = (text: string, type: 'phone' | 'email') => {
     navigator.clipboard.writeText(text);
@@ -38,63 +17,8 @@ export const Hero: React.FC = () => {
     }
   };
 
-  const handleFileChange = (file: File) => {
-    if (!file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const result = e.target?.result as string;
-      if (result) {
-        setProfilePhoto(result);
-        setIsCustomPhoto(true);
-        try {
-          localStorage.setItem('banie-custom-profile-photo', result);
-        } catch {
-          // storage quota safeguard
-        }
-        setUploadSuccess(true);
-        setTimeout(() => setUploadSuccess(false), 3000);
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      handleFileChange(file);
-    }
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file) {
-      handleFileChange(file);
-    }
-  };
-
-  const handleResetPhoto = () => {
-    setProfilePhoto(PERSONAL_INFO.profileImage);
-    setIsCustomPhoto(false);
-    try {
-      localStorage.removeItem('banie-custom-profile-photo');
-    } catch {
-      // ignore
-    }
-  };
-
   return (
     <section id="hero" className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden transition-colors duration-300">
-      {/* Hidden File Picker */}
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        onChange={handleInputChange}
-        className="hidden"
-        aria-label="Upload personal photo"
-      />
 
       {/* Background Subtle Ambient Navy Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] bg-blue-500/10 dark:bg-blue-600/15 blur-[150px] pointer-events-none rounded-full" />
@@ -198,84 +122,17 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Profile Picture with Corporate Headshot + Direct Upload Feature */}
+          {/* Right Column: Profile Picture with Corporate Headshot */}
           <div className="md:col-span-5 lg:col-span-5 flex flex-col justify-center">
             <div className="relative rounded-2xl bg-white/80 dark:bg-[#0B172E]/90 border border-slate-200/90 dark:border-blue-900/60 p-3 sm:p-4 shadow-xl shadow-blue-950/5 dark:shadow-2xl backdrop-blur-sm transition-all duration-300 hover:border-blue-400/50">
-              
-              {/* Upload Prompt Action Bar */}
-              <div className="flex items-center justify-between gap-2 mb-2 px-1">
-                <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-500 dark:text-slate-400">
-                  <Camera className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
-                  <span>Profile Photo</span>
-                </div>
-
-                <div className="flex items-center gap-1.5">
-                  <button
-                    type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold text-blue-600 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/80 hover:bg-blue-100 dark:hover:bg-blue-900 border border-blue-200 dark:border-blue-800/80 rounded-md transition-all active:scale-95"
-                    title="Upload your exact picture"
-                  >
-                    <Upload className="w-3 h-3" />
-                    <span>Upload Picture</span>
-                  </button>
-
-                  {isCustomPhoto && (
-                    <button
-                      type="button"
-                      onClick={handleResetPhoto}
-                      className="p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
-                      title="Reset to default image"
-                    >
-                      <RotateCcw className="w-3 h-3" />
-                    </button>
-                  )}
-                </div>
-              </div>
-
-              {/* Media Container with Interactive Drag & Drop + Click to Pick */}
-              <div
-                onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
-                onDragLeave={() => setIsDragging(false)}
-                onDrop={handleDrop}
-                onClick={() => fileInputRef.current?.click()}
-                className={`group cursor-pointer relative aspect-[3/4] max-h-[460px] rounded-xl overflow-hidden bg-slate-100 dark:bg-[#060D1A] border transition-all duration-300 ${
-                  isDragging
-                    ? 'border-blue-500 ring-2 ring-blue-500 ring-offset-2'
-                    : 'border-slate-200 dark:border-blue-950'
-                }`}
-                title="Click or drag & drop your picture here"
-              >
+              {/* Media Container */}
+              <div className="group relative aspect-[3/4] max-h-[460px] rounded-xl overflow-hidden bg-slate-100 dark:bg-[#060D1A] border border-slate-200 dark:border-blue-950 transition-all duration-300">
                 <img
-                  src={profilePhoto}
+                  src={PERSONAL_INFO.profileImage}
                   alt="Banie Bacolod Necesario - Workflow and AI Automation Specialist"
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
-
-                {/* Drag-over overlay */}
-                {isDragging && (
-                  <div className="absolute inset-0 bg-blue-950/80 backdrop-blur-xs flex flex-col items-center justify-center text-white z-20">
-                    <Upload className="w-10 h-10 mb-2 animate-bounce text-blue-400" />
-                    <span className="text-sm font-semibold">Drop your picture here</span>
-                  </div>
-                )}
-
-                {/* Upload Success Toast */}
-                {uploadSuccess && (
-                  <div className="absolute top-3 left-3 right-3 bg-emerald-600 text-white text-xs font-semibold py-2 px-3 rounded-lg shadow-lg flex items-center justify-center gap-1.5 z-20 animate-in fade-in">
-                    <Check className="w-4 h-4" />
-                    <span>Photo uploaded &amp; saved!</span>
-                  </div>
-                )}
-
-                {/* Hover overlay hint */}
-                <div className="absolute inset-0 bg-blue-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 text-white text-xs font-medium shadow-md border border-slate-700">
-                    <Camera className="w-3.5 h-3.5 text-blue-400" />
-                    <span>Click to change picture</span>
-                  </span>
-                </div>
 
                 {/* Contrast Scrim for Bottom Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
