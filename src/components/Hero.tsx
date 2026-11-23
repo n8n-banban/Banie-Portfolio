@@ -29,27 +29,24 @@ export const Hero: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Typographic Hierarchy */}
           <div className="md:col-span-7 lg:col-span-7 flex flex-col justify-center">
-            {/* Clean Unboxed Kicker */}
-            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-4 font-semibold">
+            {/* Oversized Headline with Balanced Wrap */}
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.9rem] font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.15] mb-4 [text-wrap:balance]">
+              Automation that eliminates manual work{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 dark:from-blue-400 dark:via-sky-300 dark:to-blue-400">
+                and turns faster responses into better customer experiences.
+              </span>
+            </h1>
+
+            {/* Attribution Subheader */}
+            <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-5 font-semibold">
               <span>{PERSONAL_INFO.name}</span>
               <span aria-hidden="true" className="text-slate-400">·</span>
-              <span>Workflow and AI Automation Specialist</span>
-              <span aria-hidden="true" className="text-slate-400">·</span>
-              <span>Customer Operations</span>
+              <span>Workflow &amp; AI Automation Specialist</span>
             </div>
-
-            {/* Oversized Headline with Balanced Wrap */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.15] mb-6 [text-wrap:balance]">
-              Building intelligent workflows that connect{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 dark:from-blue-400 dark:via-sky-300 dark:to-blue-400">
-                AI agents, voice systems,
-              </span>{' '}
-              and frontline customer operations.
-            </h1>
 
             {/* Lead Narrative */}
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mb-8">
-              {PERSONAL_INFO.summary}
+              I build workflows that save your team time and money while helping you deliver excellent customer experiences.
             </p>
 
             {/* Primary & Secondary Actions with updated labels: Experiences & My Services */}
