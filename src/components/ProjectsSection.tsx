@@ -77,7 +77,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onContactClick
           if (selectedCategory === 'Make') return p.platforms.includes('Make') || p.category === 'Make';
           if (selectedCategory === 'Zapier') return p.platforms.includes('Zapier') || p.category === 'Zapier';
           if (selectedCategory === 'GoHighLevel') return p.platforms.includes('GoHighLevel') || p.category === 'GoHighLevel';
-          if (selectedCategory === 'AI & Voice') return p.platforms.includes('Vapi') || p.category === 'AI & Voice';
+          if (selectedCategory === 'AI & Voice') return p.platforms.includes('Vapi') || p.platforms.includes('Voice AI') || p.category === 'AI & Voice';
           return true;
         });
 

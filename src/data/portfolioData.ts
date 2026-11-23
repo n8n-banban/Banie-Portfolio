@@ -305,6 +305,31 @@ export const PROJECTS: Project[] = [
       { step: 5, title: 'Wait 1 Day & 24h Reminder', tool: 'GHL Wait & Email', description: 'Pauses until 24 hours prior and sends the reminder email.' },
       { step: 6, title: 'Wait 4 Hours Pre-Visit', tool: 'GHL Wait Timer', description: 'Stages the final 4-hour pre-appointment reminder window.' }
     ]
+  },
+  {
+    id: 'voice-ai-appointment-ghl',
+    title: 'Voice AI Appointment in GoHighLevel',
+    category: 'AI & Voice',
+    platforms: ['GoHighLevel', 'Voice AI', 'Knowledge Base', 'Live Transcript', 'Post-Call'],
+    summary:
+      'Configured an inbound GoHighLevel Voice AI agent ("Hannah") using Jessica voice and GPT 6.1 Terra to greet HVAC service callers, diagnose heating/cooling or maintenance needs, qualify service areas, and book service appointments or estimates with knowledge-base grounding.',
+    trigger: 'Inbound customer phone call to GoHighLevel Voice AI number',
+    actions: [
+      'Speaks first with custom greeting and natural conversational pacing ("AI speaks first")',
+      'Identifies caller intent across service bookings, maintenance tune-ups, and replacement estimates',
+      'Grounds answers strictly in the approved Knowledge Base with hangup and spam protection',
+      'Captures caller details, callback number, live transcript, and post-call workflow triggers'
+    ],
+    businessImpact: 'Delivers 24/7 inbound call handling, accurate triage, and faster appointment scheduling without missed calls.',
+    featured: true,
+    image: '/assets/aistudio/AI_Inbound_Appointment_Setter_using_GHL_efa79453.png',
+    workflowSteps: [
+      { step: 1, title: 'Inbound Call & Greeting', tool: 'GHL Voice AI (Jessica)', description: 'Answers immediately with a tailored HVAC United welcome script.' },
+      { step: 2, title: 'Intent & Area Triage', tool: 'GPT 6.1 Terra Prompt', description: 'Identifies service issue, replacement estimate, or callback request.' },
+      { step: 3, title: 'Knowledge Base Grounding', tool: 'GHL Knowledge Base', description: 'Prevents guessing on pricing, warranties, or arrival windows.' },
+      { step: 4, title: 'Call Controls & Safety', tool: 'During-Call Actions', description: 'Applies automated hangup rules and spam call filtering.' },
+      { step: 5, title: 'Transcript & Post-Call Flow', tool: 'GHL Post-Call', description: 'Logs live transcript, callback info, and post-call follow-up workflows.' }
+    ]
   }
 ];
 
