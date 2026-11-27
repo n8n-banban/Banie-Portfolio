@@ -1,28 +1,18 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Project } from '../types';
-import { X, CheckCircle2, ArrowRight, Workflow, Camera, Upload, Check } from 'lucide-react';
+import { X, CheckCircle2, ArrowRight, Workflow } from 'lucide-react';
 
 interface ProjectModalProps {
   project: Project | null;
   onClose: () => void;
   onContactClick?: () => void;
-  onUpdateImage?: (projectId: string, imageUrl: string) => void;
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({
   project,
   onClose,
-  onContactClick,
-  onUpdateImage
+  onContactClick
 }) => {
-  const [currentImage, setCurrentImage] = useState<string | undefined>(project?.image);
-  const [isDragging, setIsDragging] = useState(false);
-  const [uploadSuccess, setUploadSuccess] = useState(false);
-  const modalFileInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    setCurrentImage(project?.image);
-  }, [project]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -42,46 +32,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
   if (!project) return null;
 
-  const handleFile = (file: File) => {
-    if (!file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const dataUrl = e.target?.result as string;
-      if (dataUrl) {
-        setCurrentImage(dataUrl);
-        setUploadSuccess(true);
-        setTimeout(() => setUploadSuccess(false), 3000);
-
-        try {
-          const stored = localStorage.getItem('banie-workflow-images');
-          const existing = stored ? JSON.parse(stored) : {};
-          existing[project.id] = dataUrl;
-          localStorage.setItem('banie-workflow-images', JSON.stringify(existing));
-        } catch {
-          // ignore
-        }
-
-        if (onUpdateImage) {
-          onUpdateImage(project.id, dataUrl);
-        }
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10">
-      {/* Hidden File Picker */}
-      <input
-        ref={modalFileInputRef}
-        type="file"
-        accept="image/*"
-        onChange={(e) => {
-          const file = e.target.files?.[0];
-          if (file) handleFile(file);
-        }}
-        className="hidden"
-      />
 
       {/* Backdrop */}
       <div
@@ -131,78 +83,25 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           ))}
         </div>
 
-        {/* Featured Image with Interactive Upload Trigger */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">
-              Workflow Architecture Diagram / Screenshot
-            </span>
-            <button
-              type="button"
-              onClick={() => modalFileInputRef.current?.click()}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-[#0E2040] hover:bg-blue-100 dark:hover:bg-blue-900 border border-blue-200 dark:border-blue-800 transition-all active:scale-95"
-            >
-              <Camera className="w-3.5 h-3.5" />
-              <span>Upload Your Screenshot</span>
-            </button>
-          </div>
-
-          <div
-            onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
-            onDragLeave={() => setIsDragging(false)}
-            onDrop={(e) => {
-              e.preventDefault();
-              setIsDragging(false);
-              const file = e.dataTransfer.files?.[0];
-              if (file) handleFile(file);
-            }}
-            onClick={() => modalFileInputRef.current?.click()}
-            className={`group cursor-pointer rounded-xl overflow-hidden border transition-all duration-300 aspect-video relative bg-slate-100 dark:bg-[#060D1A] ${
-              isDragging
-                ? 'border-blue-500 ring-2 ring-blue-500'
-                : 'border-slate-200 dark:border-blue-950 hover:border-blue-400'
-            }`}
-            title="Click or drop your real workflow screenshot here"
-          >
-            {currentImage ? (
-              <img
-                src={currentImage}
-                alt={project.title}
-                className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
-                referrerPolicy="no-referrer"
-              />
-            ) : (
-              <div className="h-full flex flex-col items-center justify-center text-slate-400">
-                <Upload className="w-8 h-8 mb-2 text-blue-500" />
-                <span className="text-sm">Click to upload workflow diagram screenshot</span>
-              </div>
-            )}
-
-            {/* Drag overlay */}
-            {isDragging && (
-              <div className="absolute inset-0 bg-blue-950/80 backdrop-blur-xs flex flex-col items-center justify-center text-white z-20">
-                <Upload className="w-10 h-10 mb-2 animate-bounce text-blue-400" />
-                <span className="text-sm font-semibold">Drop your workflow screenshot here</span>
-              </div>
-            )}
-
-            {/* Success toast */}
-            {uploadSuccess && (
-              <div className="absolute top-3 right-3 bg-emerald-600 text-white text-xs font-semibold py-1.5 px-3 rounded-lg shadow-lg flex items-center gap-1.5 z-20">
-                <Check className="w-4 h-4" />
-                <span>Screenshot saved to portfolio!</span>
-              </div>
-            )}
-
-            {/* Hover overlay hint */}
-            <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 text-white text-xs font-medium shadow-md">
-                <Camera className="w-3.5 h-3.5 text-blue-400" />
-                <span>Change Screenshot</span>
+        {/* Featured Image */}
+        {project.image && (
+          <div className="mb-8">
+            <div className="mb-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">
+                Workflow Architecture Diagram / Screenshot
               </span>
             </div>
+
+            <div className="rounded-xl overflow-hidden border border-slate-200 dark:border-blue-950 aspect-video relative bg-slate-100 dark:bg-[#060D1A]">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Executive Overview */}
         <div className="space-y-6 text-slate-700 dark:text-slate-300 text-sm leading-relaxed mb-8">

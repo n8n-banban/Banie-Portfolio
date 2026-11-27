@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PROJECTS } from '../data/portfolioData';
 import { Project } from '../types';
 import { ProjectModal } from './ProjectModal';
 import { AddWorkflowModal } from './AddWorkflowModal';
-import { ArrowRight, ChevronRight, Workflow, Plus, Upload, Camera } from 'lucide-react';
+import { ArrowRight, ChevronRight, Plus } from 'lucide-react';
 
 interface ProjectsSectionProps {
   onContactClick?: () => void;
@@ -14,9 +14,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onContactClick
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [allProjects, setAllProjects] = useState<Project[]>(PROJECTS);
-  const [customImages, setCustomImages] = useState<Record<string, string>>({});
-  const cardFileInputRef = useRef<HTMLInputElement>(null);
-  const [targetProjectId, setTargetProjectId] = useState<string | null>(null);
 
   useEffect(() => {
     try {
@@ -25,12 +22,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onContactClick
       if (stored) {
         const parsed = JSON.parse(stored);
         setAllProjects([...parsed, ...PROJECTS]);
-      }
-
-      // Load custom workflow screenshots
-      const storedImages = localStorage.getItem('banie-workflow-images');
-      if (storedImages) {
-        setCustomImages(JSON.parse(storedImages));
       }
     } catch {
       // Storage fallback
@@ -49,24 +40,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onContactClick
     }
   };
 
-  const handleCardImageUpload = (file: File) => {
-    if (!targetProjectId || !file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const result = e.target?.result as string;
-      if (result) {
-        const updated = { ...customImages, [targetProjectId]: result };
-        setCustomImages(updated);
-        try {
-          localStorage.setItem('banie-workflow-images', JSON.stringify(updated));
-        } catch {
-          // ignore
-        }
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
   const categories = ['All', 'n8n', 'Make', 'Zapier', 'GoHighLevel', 'AI & Voice'];
 
   const filteredProjects =
@@ -83,18 +56,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onContactClick
 
   return (
     <section id="projects" className="py-20 md:py-28 relative bg-[#F4F7FB] dark:bg-[#060D1A] transition-colors duration-300">
-      {/* Hidden File Input for Card Image Replacement */}
-      <input
-        ref={cardFileInputRef}
-        type="file"
-        accept="image/*"
-        onChange={(e) => {
-          const file = e.target.files?.[0];
-          if (file) handleCardImageUpload(file);
-        }}
-        className="hidden"
-      />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
@@ -144,44 +105,23 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onContactClick
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {filteredProjects.map((project) => {
-            const storedCustom = customImages[project.id];
-            const projectImage =
-              storedCustom && !storedCustom.startsWith('/src/assets/')
-                ? storedCustom
-                : project.image;
-            return (
+          {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                onClick={() => setActiveProject({ ...project, image: projectImage })}
+                onClick={() => setActiveProject(project)}
                 className="group cursor-pointer flex flex-col justify-between rounded-2xl bg-white dark:bg-[#0B1830] border border-slate-200/90 dark:border-blue-900/50 hover:border-blue-500/60 p-6 transition-all duration-300 hover:shadow-xl hover:shadow-blue-950/10 dark:hover:shadow-blue-950/40 active:scale-[0.99] relative"
               >
                 <div>
-                  {/* Visual Thumbnail with One-Click Screenshot Upload Badge */}
-                  {projectImage && (
-                    <div className="mb-5 rounded-xl overflow-hidden aspect-video bg-slate-100 dark:bg-[#060D1A] border border-slate-200 dark:border-blue-950 relative group/thumb">
+                  {/* Visual Thumbnail */}
+                  {project.image && (
+                    <div className="mb-5 rounded-xl overflow-hidden aspect-video bg-slate-100 dark:bg-[#060D1A] border border-slate-200 dark:border-blue-950 relative">
                       <img
-                        src={projectImage}
+                        src={project.image}
                         alt={project.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
-
-                      {/* Quick Screenshot Change Button */}
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setTargetProjectId(project.id);
-                          cardFileInputRef.current?.click();
-                        }}
-                        className="absolute top-2 right-2 p-1.5 rounded-lg bg-slate-900/80 hover:bg-blue-600 text-white text-[10px] opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center gap-1 shadow-md"
-                        title="Upload your own workflow screenshot"
-                      >
-                        <Camera className="w-3 h-3" />
-                        <span className="hidden sm:inline">Upload Screenshot</span>
-                      </button>
                     </div>
                   )}
 
@@ -237,8 +177,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onContactClick
                   </span>
                 </div>
               </div>
-            );
-          })}
+          ))}
         </div>
 
         {/* Bottom CTA Banner */}
