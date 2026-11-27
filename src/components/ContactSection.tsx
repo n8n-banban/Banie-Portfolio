@@ -1,10 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { PERSONAL_INFO } from '../data/portfolioData';
 import {
-  Phone,
-  Mail,
-  MapPin,
-  Clock,
   Calendar as CalendarIcon,
   Copy,
   Check,
@@ -40,25 +35,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   initialService = '',
   initialMessage = ''
 }) => {
-  const [copiedPhone, setCopiedPhone] = useState(false);
-  const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedContext, setCopiedContext] = useState(false);
   const [widgetLoaded, setWidgetLoaded] = useState(false);
   const [useIframeFallback, setUseIframeFallback] = useState(false);
   const calendlyContainerRef = useRef<HTMLDivElement>(null);
 
-  const copyToClipboard = (text: string, type: 'phone' | 'email' | 'context') => {
+  const copyContextToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    if (type === 'phone') {
-      setCopiedPhone(true);
-      setTimeout(() => setCopiedPhone(false), 2000);
-    } else if (type === 'email') {
-      setCopiedEmail(true);
-      setTimeout(() => setCopiedEmail(false), 2000);
-    } else {
-      setCopiedContext(true);
-      setTimeout(() => setCopiedContext(false), 2000);
-    }
+    setCopiedContext(true);
+    setTimeout(() => setCopiedContext(false), 2000);
   };
 
   // Listen to Calendly postMessage events to clear loading state
@@ -171,119 +156,22 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
       id="contact"
       className="py-20 md:py-28 bg-[#F4F7FB] dark:bg-[#060D1A] relative border-t border-slate-200 dark:border-blue-950 transition-colors duration-300"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left 5 Cols: Direct Contact Info & Availability */}
-          <div className="lg:col-span-5 space-y-8">
-            <div>
-              <div className="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2 font-semibold">
-                05. Get In Touch &amp; Book
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4 [text-wrap:balance]">
-                Let's automate your repetitive operations.
-              </h2>
-              <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-                Pick a convenient date and time directly on my Calendly calendar to schedule a 30-minute discovery call, or reach out via phone or email.
-              </p>
-            </div>
-
-            {/* Direct Contact Cards */}
-            <div className="space-y-4">
-              {/* Phone Card */}
-              <div className="p-4 rounded-xl bg-white dark:bg-[#0B1830] border border-slate-200/90 dark:border-blue-900/50 flex items-center justify-between shadow-sm">
-                <div className="flex items-center gap-3.5">
-                  <div className="p-2.5 rounded-lg bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/60 text-blue-600 dark:text-blue-400">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-slate-500 dark:text-slate-400">Direct Mobile / WhatsApp</div>
-                    <a
-                      href={`tel:${PERSONAL_INFO.phone}`}
-                      className="text-sm sm:text-base font-mono font-bold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                    >
-                      {PERSONAL_INFO.phoneFormatted}
-                    </a>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => copyToClipboard(PERSONAL_INFO.phone, 'phone')}
-                  className="p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#0E2040] transition-colors active:scale-90"
-                  title="Copy Phone Number"
-                  aria-label="Copy Phone Number"
-                >
-                  {copiedPhone ? (
-                    <Check className="w-4 h-4 text-emerald-500" />
-                  ) : (
-                    <Copy className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
-
-              {/* Email Card */}
-              <div className="p-4 rounded-xl bg-white dark:bg-[#0B1830] border border-slate-200/90 dark:border-blue-900/50 flex items-center justify-between shadow-sm">
-                <div className="flex items-center gap-3.5">
-                  <div className="p-2.5 rounded-lg bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/60 text-blue-600 dark:text-blue-400">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-xs text-slate-500 dark:text-slate-400">Direct Email Address</div>
-                    <a
-                      href={`mailto:${PERSONAL_INFO.email}`}
-                      className="text-sm sm:text-base font-mono font-bold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                    >
-                      {PERSONAL_INFO.email}
-                    </a>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => copyToClipboard(PERSONAL_INFO.email, 'email')}
-                  className="p-2 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#0E2040] transition-colors active:scale-90"
-                  title="Copy Email Address"
-                  aria-label="Copy Email Address"
-                >
-                  {copiedEmail ? (
-                    <Check className="w-4 h-4 text-emerald-500" />
-                  ) : (
-                    <Copy className="w-4 h-4" />
-                  )}
-                </button>
-              </div>
-
-              {/* Location Card */}
-              <div className="p-4 rounded-xl bg-white dark:bg-[#0B1830] border border-slate-200/90 dark:border-blue-900/50 flex items-center gap-3.5 shadow-sm">
-                <div className="p-2.5 rounded-lg bg-slate-100 dark:bg-[#0E2040] text-blue-600 dark:text-blue-400">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Base Location &amp; Timezone</div>
-                  <div className="text-xs sm:text-sm font-medium text-slate-900 dark:text-white">
-                    {PERSONAL_INFO.location}
-                  </div>
-                </div>
-              </div>
-
-              {/* Consultation Availability Card */}
-              <div className="p-4 rounded-xl bg-white dark:bg-[#0B1830] border border-slate-200/90 dark:border-blue-900/50 flex items-center gap-3.5 shadow-sm">
-                <div className="p-2.5 rounded-lg bg-slate-100 dark:bg-[#0E2040] text-emerald-600 dark:text-emerald-400">
-                  <Clock className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Appointment Duration</div>
-                  <div className="text-xs sm:text-sm font-medium text-slate-900 dark:text-white">
-                    30-Minute Strategy Call · Live Calendly Availability
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mb-10">
+          <div className="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2 font-semibold">
+            05. Get In Touch &amp; Book
           </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4 [text-wrap:balance]">
+            Let's automate your repetitive operations.
+          </h2>
+          <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Pick a convenient date and time directly on my Calendly calendar to schedule a 30-minute discovery call.
+          </p>
+        </div>
 
-          {/* Right 7 Cols: Inline Calendly Booking Widget */}
-          <div className="lg:col-span-7">
-            <div className="rounded-2xl bg-white dark:bg-[#0B1830] border border-slate-200/90 dark:border-blue-900/50 p-4 sm:p-6 shadow-xl shadow-blue-950/5 dark:shadow-2xl relative">
+        {/* Inline Calendly Booking Widget */}
+        <div>
+          <div className="rounded-2xl bg-white dark:bg-[#0B1830] border border-slate-200/90 dark:border-blue-900/50 p-4 sm:p-6 shadow-xl shadow-blue-950/5 dark:shadow-2xl relative">
               {/* Header Bar */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-200 dark:border-blue-950">
                 <div>
@@ -323,7 +211,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   </div>
                   <button
                     type="button"
-                    onClick={() => copyToClipboard(inquirySummary, 'context')}
+                    onClick={() => copyContextToClipboard(inquirySummary)}
                     className="p-1.5 rounded-lg text-blue-600 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-colors shrink-0"
                     title="Copy details for booking notes"
                     aria-label="Copy discussion details"
@@ -365,7 +253,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   />
                 )}
               </div>
-            </div>
           </div>
         </div>
       </div>

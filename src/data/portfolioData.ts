@@ -337,92 +337,92 @@ export const SERVICES: Service[] = [
   {
     id: 'ai-voice-telephony',
     title: 'AI Voice Agents & Inbound Telephony',
-    tagline: '24/7 AI-driven phone receptionists that book appointments and answer inquiries in real-time.',
+    tagline: '24/7 AI receptionists that answer calls and book appointments.',
     description:
-      'Deploy human-sounding conversational AI phone agents using Vapi and n8n that handle incoming calls, check calendar availability, and confirm or modify bookings without human delay.',
+      'Conversational voice agents built with Vapi and GoHighLevel that handle inbound calls, check live calendars, and confirm bookings automatically.',
     deliverables: [
-      'Custom Vapi voice bot prompt engineering & knowledge base ingestion',
-      'Real-time calendar slot querying & two-way appointment scheduling',
-      'SMS & email confirmation automation sequence',
-      'CRM contact creation and call recording transcription storage'
+      'Vapi / GHL voice prompt & knowledge base setup',
+      'Live calendar checks & two-way booking',
+      'Instant SMS & email confirmations',
+      'CRM logging & call transcript capture'
     ],
-    tools: ['Vapi', 'n8n', 'Google Calendar API', 'Twilio / Webhooks'],
-    idealFor: 'Clinics, service agencies, consultancies, and local businesses inundated with scheduling calls.'
+    tools: ['Vapi', 'GoHighLevel', 'n8n', 'Google Calendar'],
+    idealFor: 'Clinics, home services, agencies & local businesses'
   },
   {
     id: 'lead-intake-ghl',
-    title: 'Lead Intake, Smart Routing & GHL Funnels',
-    tagline: 'Convert website visitors into scheduled sales calls in under 60 seconds.',
+    title: 'Lead Intake, Routing & GHL Funnels',
+    tagline: 'Respond to new leads in under 60 seconds and book more calls.',
     description:
-      'Complete end-to-end lead management architectures across GoHighLevel, Zapier, and AI scoring models. Ensure every inquiry is captured, enriched, prioritized, and followed up automatically.',
+      'End-to-end capture, AI qualification, and automated follow-up across GoHighLevel, Zapier, and your CRM.',
     deliverables: [
-      'Multi-step lead capture, booking, sales, and nurture funnels in GoHighLevel',
-      'AI qualification scoring with Google Gemini to route high-value leads first',
-      'Multi-channel SMS, WhatsApp, and email drip sequences',
-      'Centralized Google Sheets or CRM database synchronization'
+      'GHL capture, booking & nurture funnels',
+      'AI lead scoring & priority routing',
+      'Automated SMS, email & reminder sequences',
+      'Real-time CRM & Google Sheets sync'
     ],
-    tools: ['GoHighLevel', 'Zapier', 'Google Gemini', 'Gmail / SMS'],
-    idealFor: 'B2B agencies, consultants, marketing teams, and high-velocity sales pipelines.'
+    tools: ['GoHighLevel', 'Zapier', 'Gemini AI', 'Gmail / SMS'],
+    idealFor: 'B2B agencies, consultants & high-velocity sales teams'
   },
   {
     id: 'workflow-automation-n8n-make',
-    title: 'Custom Workflow Automation (n8n & Make)',
-    tagline: 'Eliminate repetitive back-office grunt work with custom API & webhook integrations.',
+    title: 'Custom Workflow Automation (n8n, Make & Zapier)',
+    tagline: 'Eliminate repetitive manual tasks across your software stack.',
     description:
-      'Architect robust, reliable event-driven automations using self-hosted n8n or Make. From document sorting and report delivery to cross-platform data syncing, we connect your entire software stack.',
+      'Reliable API and webhook workflows that sync your apps, built with error alerts and clear documentation.',
     deliverables: [
-      'Custom webhook listeners and secure REST API integrations',
-      'Error handling, retry logic, and exception alerts',
-      'Data mapping and JSON payload transformations',
-      'Comprehensive workflow documentation & maintainability handover'
+      'Custom webhooks & REST API integrations',
+      'Cross-platform data mapping & sync',
+      'Error handling, retries & failure alerts',
+      'Clean documentation & team handoff'
     ],
-    tools: ['n8n', 'Make (Integromat)', 'Webhooks', 'REST APIs', 'JSON'],
-    idealFor: 'Operations managers and growing businesses seeking enterprise automation without enterprise software costs.'
+    tools: ['n8n', 'Make', 'Zapier', 'Webhooks / APIs'],
+    idealFor: 'Operations leads & growing teams scaling efficiently'
   },
   {
     id: 'ai-support-bots',
-    title: 'AI Customer Support & Knowledge Base Agents',
-    tagline: 'Instant, grounded answers across Facebook Messenger, Web Chat, and Email.',
+    title: 'AI Customer Support & Chat Agents',
+    tagline: 'Instant, grounded answers on Messenger, web chat, and email.',
     description:
-      'Build intelligent customer-facing support bots connected directly to your living company documents (Google Docs, Notion, Sheets). Deliver fast, empathetic responses with zero hallucinations.',
+      'Support bots connected to your live company docs to resolve common inquiries fast without guessing.',
     deliverables: [
-      'Facebook Messenger / Website live chat webhook integration',
-      'Dynamic document retrieval for living knowledge base sync',
-      'Multi-turn conversational routing with escalation to human agents',
-      'Chat sentiment monitoring and customer inquiry analytics'
+      'Messenger, web chat & email integration',
+      'Live sync with Google Docs & FAQs',
+      'Smart escalation to human agents',
+      'Conversation history & inquiry tracking'
     ],
-    tools: ['n8n', 'Meta Graph API', 'Google Docs API', 'OpenAI / Gemini'],
-    idealFor: 'E-commerce brands, digital products, and customer-facing support teams.'
+    tools: ['n8n', 'Meta API', 'Google Docs', 'OpenAI / Gemini'],
+    idealFor: 'E-commerce brands, SaaS & customer support teams'
   },
   {
     id: 'fin-ops-reporting',
-    title: 'Financial & Operational Report Automation',
-    tagline: 'Audit-ready reports delivered on schedule without human intervention.',
+    title: 'Financial & Operations Reporting',
+    tagline: 'Audit-ready reports and organized cloud files on autopilot.',
     description:
-      'Automate the extraction, compilation, and distribution of critical business data. Connect accounting suites like Xero with project management boards like Asana and cloud storage.',
+      'Automated ledger exports, email attachment sorting, and task handoffs connecting Xero, Asana, Gmail, and Google Drive.',
     deliverables: [
-      'Xero General Ledger and balance sheet report auto-export pipelines',
-      'Automated email attachment parsing and Google Drive file hierarchy sorting',
-      'Asana / Slack task status sync and automated milestone handoffs',
-      'Cloud archival with standardized vendor naming taxonomy'
+      'Automated Xero ledger & CSV exports',
+      'AI email attachment sorting & renaming',
+      'Asana & Slack milestone handoffs',
+      'Structured Google Drive & Sheets archiving'
     ],
-    tools: ['Make', 'Xero API', 'Asana API', 'Google Drive API'],
-    idealFor: 'Bookkeepers, finance departments, and project operations leads.'
+    tools: ['Make', 'Xero API', 'Asana', 'Google Drive'],
+    idealFor: 'Finance teams, bookkeepers & project managers'
   },
   {
     id: 'cx-operations-retention',
     title: 'Customer Operations & Retention Advisory',
-    tagline: 'Bridging 9+ years of frontline customer experience with modern AI automations.',
+    tagline: '9+ years of frontline CX expertise applied to your workflows.',
     description:
-      'Unlike pure software coders, Banie brings nearly a decade of frontline telecom, insurance, and consumer promotions experience to design workflows that respect genuine customer psychology.',
+      'Practical workflow audits and retention systems shaped by real telecom, insurance, and multichannel support experience.',
     deliverables: [
-      'Customer journey friction analysis and bottleneck discovery',
-      'Support ticket categorization and deflection strategy',
-      'Retention playbook design for churn-risk accounts',
-      'Multichannel SLA optimization (Live chat, Email, Phone)'
+      'Customer journey & bottleneck audit',
+      'Ticket triage & self-service deflection',
+      'Churn-prevention & follow-up playbooks',
+      'Multichannel SLA & response optimization'
     ],
-    tools: ['CX Playbooks', 'Retention Funnels', 'SLA Frameworks'],
-    idealFor: 'Companies looking to scale customer operations without sacrificing customer satisfaction.'
+    tools: ['CX Audits', 'Retention Funnels', 'SLA Playbooks'],
+    idealFor: 'Teams scaling support without sacrificing CSAT'
   }
 ];
 
@@ -493,37 +493,10 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 'test-1',
     quote:
-      'Banie built our n8n and Vapi voice appointment system. What used to take our receptionist half the day is now 100% automated. Incoming callers get answered on the 2nd ring and our calendar stays fully booked.',
-    clientName: 'Marcus Sterling',
-    clientTitle: 'Operations Director',
-    companyOrContext: 'Apex Growth Agency',
-    highlightMetric: '35+ automated appointments / week'
-  },
-  {
-    id: 'test-2',
-    quote:
-      'Most automation contractors only know how to click buttons in Zapier, but Banie has spent years on the phones talking to real customers. His workflows anticipate customer questions before they even happen.',
-    clientName: 'Elena Rostova',
-    clientTitle: 'Head of Client Operations',
-    companyOrContext: 'Vanguard Media Group',
-    highlightMetric: '99.4% automated flow reliability'
-  },
-  {
-    id: 'test-3',
-    quote:
-      'The Xero ledger extraction and Asana handoff saved our accounting department at least 6 hours every single reconciliation cycle. The reports arrive attached to the exact task the moment it is checked off.',
-    clientName: 'David Chen',
-    clientTitle: 'Finance & Systems Lead',
-    companyOrContext: 'Pacific Trade Solutions',
-    highlightMetric: '6 hours saved weekly'
-  },
-  {
-    id: 'test-4',
-    quote:
-      'Our lead response time went from 4 hours down to under 45 seconds using his Gemini + Zapier + GoHighLevel pipeline. That single automation paid for itself in the first 72 hours of going live.',
-    clientName: 'Carlos Mendoza',
-    clientTitle: 'Founder & Managing Director',
-    companyOrContext: 'Solaris Digital Consulting',
-    highlightMetric: '<45s lead response time'
+      'Banie is knowledgeable, compassionate, and friendly. Please continue hiring people like him. Great job and excellent service!',
+    clientName: 'Maria Rebecca Reyes',
+    clientTitle: 'AXA Customer',
+    companyOrContext: '',
+    highlightMetric: 'Verified Client Feedback'
   }
 ];

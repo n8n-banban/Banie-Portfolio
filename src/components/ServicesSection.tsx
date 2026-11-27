@@ -50,15 +50,15 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
     <section id="services" className="py-20 md:py-28 bg-[#EEF4FB] dark:bg-[#071120] relative border-t border-slate-200 dark:border-blue-950 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-2xl mb-12">
           <div className="text-xs font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-2 font-semibold">
             01. Specialized Capabilities
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-4 [text-wrap:balance]">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight mb-3 [text-wrap:balance]">
             My Services
           </h2>
           <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-            Tailored automation and operations systems designed to modernize repetitive workflows, capture leads, and support frontline customer operations.
+            Practical AI workflows, CRM pipelines, and customer operations built to cut manual work and convert leads faster.
           </p>
         </div>
 
@@ -80,22 +80,22 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                   </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1.5 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {service.title}
                 </h3>
 
-                <p className="text-xs text-blue-600 dark:text-blue-400 font-medium mb-4 leading-normal">
+                <p className="text-xs text-blue-600 dark:text-blue-400 font-medium mb-3 leading-normal">
                   {service.tagline}
                 </p>
 
-                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
                   {service.description}
                 </p>
 
                 {/* Deliverables Checklist */}
-                <div className="mb-6 space-y-2">
+                <div className="mb-5 space-y-1.5">
                   <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
-                    Key Deliverables
+                    Included
                   </div>
                   {service.deliverables.map((item, idx) => (
                     <div key={idx} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300">
@@ -107,18 +107,24 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               </div>
 
               <div>
-                {/* Tech Stack Unboxed Metadata */}
-                <div className="pt-4 border-t border-slate-200 dark:border-blue-900/60 mb-4">
-                  <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-1">Stack &amp; Integrations</div>
-                  <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300">
-                    {service.tools.map((tool, idx) => (
-                      <React.Fragment key={tool}>
-                        <span className="font-mono text-[11px] text-slate-700 dark:text-slate-300">{tool}</span>
-                        {idx < service.tools.length - 1 && (
-                          <span className="text-slate-400 dark:text-slate-600" aria-hidden="true">·</span>
-                        )}
-                      </React.Fragment>
-                    ))}
+                {/* Best For & Stack Metadata */}
+                <div className="pt-3.5 border-t border-slate-200 dark:border-blue-900/60 mb-4 space-y-2.5">
+                  <div>
+                    <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-0.5">Best For</div>
+                    <div className="text-xs text-slate-700 dark:text-slate-300">{service.idealFor}</div>
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-0.5">Stack</div>
+                    <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-600 dark:text-slate-300">
+                      {service.tools.map((tool, idx) => (
+                        <React.Fragment key={tool}>
+                          <span className="font-mono text-[11px] text-slate-700 dark:text-slate-300">{tool}</span>
+                          {idx < service.tools.length - 1 && (
+                            <span className="text-slate-400 dark:text-slate-600" aria-hidden="true">·</span>
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
